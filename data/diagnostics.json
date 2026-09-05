@@ -1,0 +1,5 @@
+[
+  {"id":"diag-001","name":"HbA1c Test","category":"Diabetes","price":450,"turnaround":"24 hours"},
+  {"id":"diag-002","name":"Fasting Blood Glucose","category":"Diabetes","price":120,"turnaround":"6 hours"},
+  {"id":"diag-003","name":"Lipid Profile","category":"Routine","price":550,"turnaround":"24 hours"}
+]

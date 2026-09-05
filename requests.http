@@ -1,0 +1,214 @@
+### ==============================================================================
+### ReLifeX - Anurag's Workstream Endpoints
+### Base URL: http://localhost:4000
+### ==============================================================================
+
+@baseUrl = http://localhost:4000/api
+
+
+### ------------------------------------------------------------------------------
+### 1. HEALTH & MONGODB STATUS
+### ------------------------------------------------------------------------------
+
+# Health Check & MongoDB Connectivity
+GET {{baseUrl}}/health
+
+
+### ------------------------------------------------------------------------------
+### 2. MEDICINE ORDERING & CART
+### ------------------------------------------------------------------------------
+
+# 1. Get Medicine Catalog
+GET {{baseUrl}}/ordering/medicines
+
+###
+
+# 2. Get Medicine by ID
+GET {{baseUrl}}/ordering/medicines/med-001
+
+###
+
+# 3. Get Current Cart
+GET {{baseUrl}}/ordering/cart
+
+###
+
+# 4. Add Item to Cart
+POST {{baseUrl}}/ordering/cart/items
+Content-Type: application/json
+
+{
+  "medicineId": "med-001",
+  "quantity": 2
+}
+
+###
+
+# 5. Update Cart Item Quantity
+PATCH {{baseUrl}}/ordering/cart/items/med-001
+Content-Type: application/json
+
+{
+  "quantity": 4
+}
+
+###
+
+# 6. Checkout Cart (Converts cart into Order and saves to MongoDB)
+POST {{baseUrl}}/ordering/cart/checkout
+
+###
+
+# 7. Place Direct Order
+POST {{baseUrl}}/ordering/orders
+Content-Type: application/json
+
+{
+  "items": [
+    {
+      "medicineId": "med-001",
+      "quantity": 2
+    }
+  ],
+  "deliveryAddress": {
+    "street": "123 Health Ave",
+    "city": "Bangalore",
+    "pincode": "560001"
+  }
+}
+
+###
+
+# 8. View Placed Orders
+GET {{baseUrl}}/ordering/orders
+
+
+### ------------------------------------------------------------------------------
+### 3. DIAGNOSTICS (MOCK BACKEND)
+### ------------------------------------------------------------------------------
+
+# 1. Browse Diagnostic Tests
+GET {{baseUrl}}/diagnostics
+
+###
+
+# 2. Book a Diagnostic Test
+POST {{baseUrl}}/diagnostics/bookings
+Content-Type: application/json
+
+{
+  "diagnosticId": "diag-001",
+  "slot": "2026-09-10 09:00 AM"
+}
+
+###
+
+# 3. View My Diagnostic Bookings
+GET {{baseUrl}}/diagnostics/bookings/my
+
+###
+
+# 4. View Demo Sample Lab Report
+GET {{baseUrl}}/diagnostics/bookings/demo-booking-123/report
+
+
+### ------------------------------------------------------------------------------
+### 4. DOCTOR CONSULTATION (MOCK BACKEND)
+### ------------------------------------------------------------------------------
+
+# 1. Browse Doctors
+GET {{baseUrl}}/consultation/doctors
+
+###
+
+# 2. Book a Doctor Appointment
+POST {{baseUrl}}/consultation/bookings
+Content-Type: application/json
+
+{
+  "doctorId": "doc-001",
+  "slot": "2026-09-10 11:30 AM"
+}
+
+###
+
+# 3. View My Doctor Appointments
+GET {{baseUrl}}/consultation/bookings/my
+
+###
+
+# 4. Join Telehealth Video Consultation Room
+GET {{baseUrl}}/consultation/bookings/demo-booking-456/join
+
+
+### ------------------------------------------------------------------------------
+### 5. WEARABLES (GOOGLE FIT INTEGRATION)
+### ------------------------------------------------------------------------------
+
+# 1. Get Google Fit OAuth Authorization URL
+GET {{baseUrl}}/wearables/google-fit/connect
+
+###
+
+# 2. Check Connection State
+GET {{baseUrl}}/wearables/google-fit/status
+
+###
+
+# 3. Read Activity Data (Steps, Calories)
+GET {{baseUrl}}/wearables/google-fit/activity
+
+###
+
+# 4. Read Workout Sessions (Walking, HIIT, Cycling)
+GET {{baseUrl}}/wearables/google-fit/workouts
+
+###
+
+# 5. Read Normalized Activity Summary
+GET {{baseUrl}}/wearables/google-fit/summary
+
+###
+
+# 6. Push Wearable Data to Harshavardhana's Fitness Module
+POST {{baseUrl}}/wearables/google-fit/fitness-stream
+Content-Type: application/json
+
+{
+  "steps": 8500,
+  "calories": 420
+}
+
+
+### ------------------------------------------------------------------------------
+### 6. FIREBASE CLOUD MESSAGING (PUSH NOTIFICATIONS & NUDGES)
+### ------------------------------------------------------------------------------
+
+# 1. Trigger Workout Nudge
+POST {{baseUrl}}/notifications/nudges/workout
+Content-Type: application/json
+
+{
+  "token": "test-device-token",
+  "nudgeType": "WORKOUT_NUDGE",
+  "customMessage": "Time to complete your 30-minute cardio session!"
+}
+
+###
+
+# 2. Ingest Habit / Insight Trigger Event
+POST {{baseUrl}}/notifications/events
+Content-Type: application/json
+
+{
+  "token": "test-device-token",
+  "eventType": "HABIT_REMINDER",
+  "payload": {
+    "body": "Don't forget to drink your afternoon water target."
+  }
+}
+
+###
+
+# 3. View Notification Dispatch History (from MongoDB)
+GET {{baseUrl}}/notifications/history

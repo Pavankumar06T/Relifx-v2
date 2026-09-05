@@ -1,0 +1,67 @@
+﻿name: ReLifeX Staged CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+    tags: ['v*']
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  validate:
+    name: Code Quality & Automated Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+
+  docker-build-check:
+    name: Container Build Verification
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: false
+          tags: relifex-anurag-integrations:latest
+
+  deploy-staging:
+    name: Deploy to Staging Environment
+    needs: [validate, docker-build-check]
+    if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Staging Deploy Hook
+        if: ${{ secrets.RENDER_STAGING_DEPLOY_HOOK != '' }}
+        run: |
+          echo "Deploying to Staging Environment..."
+          curl -fsS -X POST "${{ secrets.RENDER_STAGING_DEPLOY_HOOK }}"
+
+  deploy-production:
+    name: Staged Production Release
+    needs: [validate, docker-build-check]
+    if: (github.ref == 'refs/heads/main' && github.event_name == 'push') || startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Trigger Production Deploy Hook
+        if: ${{ secrets.REPLIFEX_RENDER_DEPLOY_HOOK != '' }}
+        run: |
+          echo "Deploying to Production Environment..."
+          curl -fsS -X POST "${{ secrets.REPLIFEX_RENDER_DEPLOY_HOOK }}"
+      - name: Post-deployment Health Check
+        if: ${{ secrets.PUBLIC_PRODUCTION_URL != '' }}
+        run: |
+          sleep 15
+          curl -fsS "${{ secrets.PUBLIC_PRODUCTION_URL }}/api/health"

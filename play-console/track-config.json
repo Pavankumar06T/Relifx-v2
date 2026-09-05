@@ -1,0 +1,33 @@
+﻿{
+  "packageName": "com.relifex.app",
+  "tracks": {
+    "internal": {
+      "track": "internal",
+      "userFraction": 1.0,
+      "status": "completed",
+      "targetAudience": "Core engineering & QA team"
+    },
+    "closed": {
+      "track": "alpha",
+      "userFraction": 1.0,
+      "status": "completed",
+      "targetAudience": "Pre-release clinical pilot group"
+    },
+    "production_staged_rollout": {
+      "track": "production",
+      "stages": [
+        { "phase": 1, "userFraction": 0.10, "durationDays": 2, "description": "Canary release to 10% of users" },
+        { "phase": 2, "userFraction": 0.25, "durationDays": 3, "description": "Gradual rollout to 25% of users" },
+        { "phase": 3, "userFraction": 0.50, "durationDays": 2, "description": "Expanded rollout to 50% of users" },
+        { "phase": 4, "userFraction": 1.00, "durationDays": 0, "description": "100% General Availability" }
+      ],
+      "haltConditions": {
+        "crashRateThreshold": 0.015,
+        "anrRateThreshold": 0.005
+      }
+    }
+  },
+  "releaseNotes": {
+    "en-US": "ReLifeX v3: Google Fit wearable synchronization, medicine ordering catalog & cart, diagnostics, and doctor consultation bookings."
+  }
+}

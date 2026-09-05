@@ -1,0 +1,1 @@
+Run `npm install` in the project directory to create package-lock.json before committing. This placeholder is intentionally kept because dependency lockfiles are environment-specific.

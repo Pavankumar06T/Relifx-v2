@@ -1,0 +1,23 @@
+name: ReLifeX Deploy
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      # Configure your Render deploy hook as REPLIFEX_RENDER_DEPLOY_HOOK.
+      - name: Trigger Render deploy
+        if: ${{ secrets.REPLIFEX_RENDER_DEPLOY_HOOK != '' }}
+        run: curl -fsS -X POST "${{ secrets.REPLIFEX_RENDER_DEPLOY_HOOK }}"

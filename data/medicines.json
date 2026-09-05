@@ -1,0 +1,5 @@
+[
+  {"id":"med-001","name":"Metformin 500 mg","genericName":"Metformin","strength":"500 mg","form":"Tablet","category":"Diabetes","price":35,"stock":120,"prescriptionRequired":true},
+  {"id":"med-002","name":"Glimepiride 1 mg","genericName":"Glimepiride","strength":"1 mg","form":"Tablet","category":"Diabetes","price":52,"stock":90,"prescriptionRequired":true},
+  {"id":"med-003","name":"Vitamin D3 1000 IU","genericName":"Cholecalciferol","strength":"1000 IU","form":"Tablet","category":"Vitamins","price":110,"stock":75,"prescriptionRequired":false}
+]

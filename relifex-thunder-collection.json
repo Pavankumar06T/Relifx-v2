@@ -1,0 +1,281 @@
+{
+  "clientName": "Thunder Client",
+  "collectionName": "ReLifeX - Anurag Integrations",
+  "collectionId": "relifex-apis",
+  "dateExported": "2026-09-04",
+  "version": "1.1",
+  "folders": [
+    {
+      "_id": "f-ordering",
+      "name": "1. Medicine Ordering & Cart",
+      "containerId": ""
+    },
+    {
+      "_id": "f-diagnostics",
+      "name": "2. Diagnostics (Mock Backend)",
+      "containerId": ""
+    },
+    {
+      "_id": "f-consultation",
+      "name": "3. Doctor Consultation (Mock Backend)",
+      "containerId": ""
+    },
+    {
+      "_id": "f-wearables",
+      "name": "4. Google Fit Wearables",
+      "containerId": ""
+    },
+    {
+      "_id": "f-notifications",
+      "name": "5. Push Notifications & Nudges",
+      "containerId": ""
+    },
+    {
+      "_id": "f-health",
+      "name": "6. Health & MongoDB Status",
+      "containerId": ""
+    }
+  ],
+  "requests": [
+    {
+      "_id": "req-health",
+      "colId": "relifex-apis",
+      "containerId": "f-health",
+      "name": "Health Check & MongoDB Status",
+      "url": "http://localhost:4000/api/health",
+      "method": "GET"
+    },
+    {
+      "_id": "req-ord-catalog",
+      "colId": "relifex-apis",
+      "containerId": "f-ordering",
+      "name": "Get Medicine Catalog",
+      "url": "http://localhost:4000/api/ordering/medicines",
+      "method": "GET"
+    },
+    {
+      "_id": "req-ord-detail",
+      "colId": "relifex-apis",
+      "containerId": "f-ordering",
+      "name": "Get Medicine by ID (med-001)",
+      "url": "http://localhost:4000/api/ordering/medicines/med-001",
+      "method": "GET"
+    },
+    {
+      "_id": "req-ord-cart-get",
+      "colId": "relifex-apis",
+      "containerId": "f-ordering",
+      "name": "Get Current Cart",
+      "url": "http://localhost:4000/api/ordering/cart",
+      "method": "GET"
+    },
+    {
+      "_id": "req-ord-cart-add",
+      "colId": "relifex-apis",
+      "containerId": "f-ordering",
+      "name": "Add Item to Cart",
+      "url": "http://localhost:4000/api/ordering/cart/items",
+      "method": "POST",
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"medicineId\": \"med-001\",\n  \"quantity\": 2\n}"
+      }
+    },
+    {
+      "_id": "req-ord-cart-patch",
+      "colId": "relifex-apis",
+      "containerId": "f-ordering",
+      "name": "Update Cart Item Quantity",
+      "url": "http://localhost:4000/api/ordering/cart/items/med-001",
+      "method": "PATCH",
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"quantity\": 5\n}"
+      }
+    },
+    {
+      "_id": "req-ord-cart-checkout",
+      "colId": "relifex-apis",
+      "containerId": "f-ordering",
+      "name": "Checkout Cart to Order",
+      "url": "http://localhost:4000/api/ordering/cart/checkout",
+      "method": "POST"
+    },
+    {
+      "_id": "req-ord-direct-order",
+      "colId": "relifex-apis",
+      "containerId": "f-ordering",
+      "name": "Place Direct Order",
+      "url": "http://localhost:4000/api/ordering/orders",
+      "method": "POST",
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"items\": [\n    {\n      \"medicineId\": \"med-001\",\n      \"quantity\": 1\n    }\n  ]\n}"
+      }
+    },
+    {
+      "_id": "req-ord-orders-list",
+      "colId": "relifex-apis",
+      "containerId": "f-ordering",
+      "name": "Get Order History",
+      "url": "http://localhost:4000/api/ordering/orders",
+      "method": "GET"
+    },
+    {
+      "_id": "req-diag-list",
+      "colId": "relifex-apis",
+      "containerId": "f-diagnostics",
+      "name": "List Diagnostic Tests",
+      "url": "http://localhost:4000/api/diagnostics",
+      "method": "GET"
+    },
+    {
+      "_id": "req-diag-book",
+      "colId": "relifex-apis",
+      "containerId": "f-diagnostics",
+      "name": "Book Diagnostic Test",
+      "url": "http://localhost:4000/api/diagnostics/bookings",
+      "method": "POST",
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"diagnosticId\": \"diag-001\",\n  \"slot\": \"2026-09-10 10:00 AM\"\n}"
+      }
+    },
+    {
+      "_id": "req-diag-my",
+      "colId": "relifex-apis",
+      "containerId": "f-diagnostics",
+      "name": "My Diagnostic Bookings",
+      "url": "http://localhost:4000/api/diagnostics/bookings/my",
+      "method": "GET"
+    },
+    {
+      "_id": "req-diag-report",
+      "colId": "relifex-apis",
+      "containerId": "f-diagnostics",
+      "name": "Get Demo Lab Report",
+      "url": "http://localhost:4000/api/diagnostics/bookings/demo-booking-123/report",
+      "method": "GET"
+    },
+    {
+      "_id": "req-doc-list",
+      "colId": "relifex-apis",
+      "containerId": "f-consultation",
+      "name": "List Doctors",
+      "url": "http://localhost:4000/api/consultation/doctors",
+      "method": "GET"
+    },
+    {
+      "_id": "req-doc-book",
+      "colId": "relifex-apis",
+      "containerId": "f-consultation",
+      "name": "Book Doctor Consultation",
+      "url": "http://localhost:4000/api/consultation/bookings",
+      "method": "POST",
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"doctorId\": \"doc-001\",\n  \"slot\": \"2026-09-10 11:30 AM\"\n}"
+      }
+    },
+    {
+      "_id": "req-doc-my",
+      "colId": "relifex-apis",
+      "containerId": "f-consultation",
+      "name": "My Doctor Bookings",
+      "url": "http://localhost:4000/api/consultation/bookings/my",
+      "method": "GET"
+    },
+    {
+      "_id": "req-doc-join",
+      "colId": "relifex-apis",
+      "containerId": "f-consultation",
+      "name": "Join Telehealth Consultation Room",
+      "url": "http://localhost:4000/api/consultation/bookings/demo-booking-456/join",
+      "method": "GET"
+    },
+    {
+      "_id": "req-fit-connect",
+      "colId": "relifex-apis",
+      "containerId": "f-wearables",
+      "name": "Get Google Fit Connect URL",
+      "url": "http://localhost:4000/api/wearables/google-fit/connect",
+      "method": "GET"
+    },
+    {
+      "_id": "req-fit-status",
+      "colId": "relifex-apis",
+      "containerId": "f-wearables",
+      "name": "Get Google Fit Connection Status",
+      "url": "http://localhost:4000/api/wearables/google-fit/status",
+      "method": "GET"
+    },
+    {
+      "_id": "req-fit-activity",
+      "colId": "relifex-apis",
+      "containerId": "f-wearables",
+      "name": "Get Activity Data (Steps & Calories)",
+      "url": "http://localhost:4000/api/wearables/google-fit/activity",
+      "method": "GET"
+    },
+    {
+      "_id": "req-fit-workouts",
+      "colId": "relifex-apis",
+      "containerId": "f-wearables",
+      "name": "Get Workout Sessions",
+      "url": "http://localhost:4000/api/wearables/google-fit/workouts",
+      "method": "GET"
+    },
+    {
+      "_id": "req-fit-summary",
+      "colId": "relifex-apis",
+      "containerId": "f-wearables",
+      "name": "Get Normalized Activity Summary",
+      "url": "http://localhost:4000/api/wearables/google-fit/summary",
+      "method": "GET"
+    },
+    {
+      "_id": "req-fit-stream",
+      "colId": "relifex-apis",
+      "containerId": "f-wearables",
+      "name": "Send Data to Fitness Module",
+      "url": "http://localhost:4000/api/wearables/google-fit/fitness-stream",
+      "method": "POST",
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"steps\": 8500,\n  \"calories\": 420\n}"
+      }
+    },
+    {
+      "_id": "req-notif-nudge",
+      "colId": "relifex-apis",
+      "containerId": "f-notifications",
+      "name": "Trigger Workout Nudge",
+      "url": "http://localhost:4000/api/notifications/nudges/workout",
+      "method": "POST",
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"token\": \"test-device-token\",\n  \"nudgeType\": \"WORKOUT_NUDGE\",\n  \"customMessage\": \"Time for your 30-minute cardio session!\"\n}"
+      }
+    },
+    {
+      "_id": "req-notif-event",
+      "colId": "relifex-apis",
+      "containerId": "f-notifications",
+      "name": "Trigger Habit / Insight Event",
+      "url": "http://localhost:4000/api/notifications/events",
+      "method": "POST",
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"token\": \"test-device-token\",\n  \"eventType\": \"HABIT_REMINDER\",\n  \"payload\": {\n    \"body\": \"Time to log your evening water intake!\"\n  }\n}"
+      }
+    },
+    {
+      "_id": "req-notif-history",
+      "colId": "relifex-apis",
+      "containerId": "f-notifications",
+      "name": "Get Notification Dispatch History",
+      "url": "http://localhost:4000/api/notifications/history",
+      "method": "GET"
+    }
+  ]
+}
