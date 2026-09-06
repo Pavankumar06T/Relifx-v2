@@ -1,0 +1,26 @@
+[
+  {
+    "date": "2026-09-02",
+    "workoutType": "walking",
+    "exerciseName": "Example outdoor walk",
+    "durationMinutes": 30,
+    "intensity": "moderate",
+    "caloriesBurned": 150
+  },
+  {
+    "date": "2026-09-03",
+    "workoutType": "cycling",
+    "exerciseName": "Example cycling session",
+    "durationMinutes": 45,
+    "intensity": "high",
+    "caloriesBurned": 300
+  },
+  {
+    "date": "2026-09-04",
+    "workoutType": "strength_training",
+    "exerciseName": "Example strength training",
+    "durationMinutes": 40,
+    "intensity": "moderate",
+    "caloriesBurned": 220
+  }
+]

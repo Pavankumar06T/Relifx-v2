@@ -1,0 +1,9 @@
+{
+  "date": "2026-09-04",
+  "glucose": [{ "value": 112, "timing": "fasting" }, { "value": 138, "timing": "after_meal" }],
+  "meals": [{ "name": "Oats and fruit", "mealType": "breakfast", "calories": 370, "carbsGrams": 58 }],
+  "medications": [{ "name": "Metformin", "dosage": "500 mg", "taken": true }],
+  "activity": { "type": "walking", "durationMinutes": 35, "steps": 4820, "intensity": "moderate" },
+  "sleep": { "hours": 7.5, "quality": 4 },
+  "stress": { "level": 3, "note": "Calm day" }
+}
