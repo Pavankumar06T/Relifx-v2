@@ -1,0 +1,32 @@
+[
+  {
+    "id": "kb_001",
+    "topic": "Post-Meal Exercise and GLUT4",
+    "content": "Engaging in 10-20 minutes of light to moderate physical activity (such as brisk walking) within 30 minutes after a meal stimulates GLUT4 glucose transporters in skeletal muscle tissue independently of insulin. This rapid glucose uptake directly reduces post-prandial glycemic spikes by up to 25-30%."
+  },
+  {
+    "id": "kb_002",
+    "topic": "Sleep Deprivation and Insulin Resistance",
+    "content": "Sleeping less than 6 hours per night increases sympathetic nervous system activity and elevates evening cortisol levels. Cortisol signals the liver to undergo gluconeogenesis (producing glucose), resulting in elevated morning fasting blood glucose and transient insulin resistance."
+  },
+  {
+    "id": "kb_003",
+    "topic": "Dietary Fiber and Glycemic Index",
+    "content": "Soluble dietary fiber (found in oats, legumes, chia seeds, and non-starchy vegetables) forms a viscous gel in the digestive tract. This slows gastric emptying and carbohydrate enzymatic breakdown, lowering the glycemic load of meals and smoothing blood glucose curves."
+  },
+  {
+    "id": "kb_004",
+    "topic": "HbA1c and Average Glucose Correlation",
+    "content": "An HbA1c target below 6.5% to 7.0% corresponds to an estimated Average Glucose (eAG) of 126 to 154 mg/dL. Reaching this target requires consistent daily management of both fasting blood glucose and post-prandial peaks."
+  },
+  {
+    "id": "kb_005",
+    "topic": "Hydration and Plasma Glucose",
+    "content": "Dehydration decreases total blood volume while keeping blood solute levels high, leading to concentrated blood sugar readings. Drinking adequate water (2.5 to 3 liters daily) helps the kidneys excrete excess blood glucose through urine."
+  },
+  {
+    "id": "kb_006",
+    "topic": "Dawn Phenomenon vs Somogyi Effect",
+    "content": "The Dawn Phenomenon is a natural early morning surge in growth hormone, cortisol, and glucagon (between 3 AM and 8 AM) that raises fasting glucose. In contrast, the Somogyi effect occurs when nocturnal hypoglycemia triggers a rebound spike. Checking glucose at 3 AM helps differentiate the two."
+  }
+]
