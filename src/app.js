@@ -5,6 +5,8 @@ import authRoutes from "./routes/authRoutes.js";
 import profileRoutes from "./routes/profileRoutes.js";
 import dailyLogRoutes from "./routes/dailyLogRoutes.js";
 import fitnessRoutes from "./routes/fitnessRoutes.js";
+import medicineDoseRoutes from "./routes/medicineDoseRoutes.js";
+import medicineRoutes from "./routes/medicineRoutes.js";
 import notFound from "./middleware/notFound.js";
 import errorHandler from "./middleware/errorHandler.js";
 
@@ -20,6 +22,12 @@ app.use("/api/auth", authRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/health", dailyLogRoutes);
 app.use("/api/health", fitnessRoutes);
+// medicineDoseRoutes is mounted before medicineRoutes: both share the
+// "/api/medicine" prefix, and medicineDoseRoutes owns the literal "/doses"
+// path, which must be matched before medicineRoutes' "/:medicineId" param
+// route would otherwise capture it.
+app.use("/api/medicine", medicineDoseRoutes);
+app.use("/api/medicine", medicineRoutes);
 
 // 404 Route Not Found Handler
 app.use(notFound);
