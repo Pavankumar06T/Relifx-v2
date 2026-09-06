@@ -5,6 +5,7 @@ import authRoutes from "./routes/authRoutes.js";
 import profileRoutes from "./routes/profileRoutes.js";
 import dailyLogRoutes from "./routes/dailyLogRoutes.js";
 import fitnessRoutes from "./routes/fitnessRoutes.js";
+import fitnessCoachingRoutes from "./routes/fitnessCoachingRoutes.js";
 import medicineDoseRoutes from "./routes/medicineDoseRoutes.js";
 import medicineRoutes from "./routes/medicineRoutes.js";
 import notFound from "./middleware/notFound.js";
@@ -22,6 +23,11 @@ app.use("/api/auth", authRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/health", dailyLogRoutes);
 app.use("/api/health", fitnessRoutes);
+// Mounted separately (still under /api/health/fitness) so the AI coaching
+// endpoint and its dedicated rate limiter stay isolated from the existing
+// fitness aggregation routes above. Path is distinct ("/coaching" vs
+// "/fitness/summary"), so there is no routing conflict or ordering issue.
+app.use("/api/health/fitness", fitnessCoachingRoutes);
 // medicineDoseRoutes is mounted before medicineRoutes: both share the
 // "/api/medicine" prefix, and medicineDoseRoutes owns the literal "/doses"
 // path, which must be matched before medicineRoutes' "/:medicineId" param
