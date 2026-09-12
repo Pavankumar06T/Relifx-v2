@@ -1,6 +1,8 @@
 import express from "express";
+import authMiddleware from "./middleware/authMiddleware.js";
 import cors from "cors";
 import healthRoutes from "./routes/healthRoutes.js";
+import habitRoutes from "./routes/habitRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import profileRoutes from "./routes/profileRoutes.js";
 import dailyLogRoutes from "./routes/dailyLogRoutes.js";
@@ -19,6 +21,8 @@ app.use(express.json());
 
 // Routes
 app.use("/api", healthRoutes);
+app.use("/api/health/habits", authMiddleware, habitRoutes);
+app.use("/api/health", fitnessRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/health", dailyLogRoutes);
