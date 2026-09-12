@@ -1,5 +1,8 @@
 import express from "express";
 import authMiddleware from "./middleware/authMiddleware.js";
+import healthLogRoutes from "./routes/healthLogRoutes.js";
+import healthRecordRoutes from "./routes/healthRecordRoutes.js";
+import workoutRoutes from "./routes/workoutRoutes.js";
 import cors from "cors";
 import healthRoutes from "./routes/healthRoutes.js";
 import habitRoutes from "./routes/habitRoutes.js";
@@ -27,6 +30,9 @@ app.use("/api/auth", authRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/health", dailyLogRoutes);
 app.use("/api/health", fitnessRoutes);
+app.use("/api/health/extended-logs", authMiddleware, healthLogRoutes);
+app.use("/api/health/records", authMiddleware, healthRecordRoutes);
+app.use("/api/health/workouts-extended", authMiddleware, workoutRoutes);
 // Mounted separately (still under /api/health/fitness) so the AI coaching
 // endpoint and its dedicated rate limiter stay isolated from the existing
 // fitness aggregation routes above. Path is distinct ("/coaching" vs
